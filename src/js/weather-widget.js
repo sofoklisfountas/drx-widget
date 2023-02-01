@@ -5,7 +5,7 @@ const weatherWidgetTemplate = document.createElement('template');
 
 weatherWidgetTemplate.innerHTML = /*html*/`
 <aticle class="widget">
-	<div class="header-info-container">
+	<main class="header-info-container">
 		<h2 class="header__city">Thessaloniki</h2>
 		<p class="header__date">Mon 28 Jan 2023</p>
 		<div class="header-temp-container">
@@ -14,26 +14,26 @@ weatherWidgetTemplate.innerHTML = /*html*/`
 		</div>
 
 		<p class="header__feels">feels like</p>
-	</div>
-	<div class="details-container">
-		<h4 class="bold details__text">pressure <span class="details__pressure details__value"></span></h4>
-		<h4 class="bold details__text">humidity <span class="details__humidity details__value"></span></h4>
-		<h4 class="bold details__text">wind speed <span class="details__wind-speed details__value"></span></h4>
-		<h4 class="bold details__text">wind degrees <span class="details__wind-deg details__value"></span></h4>
-		<h4 class="bold details__text">clouds <span class="details__clouds details__value"></span></h4>
-	</div>
-	<div class="menu-container" role="menu" aria-label="Tabs for each day" aria-controls="menu">
-		<button class="button selected-day" role="menuitem">TDA</button>
-		<button class="button" role="menuitem">[DAY]</button>
-		<button class="button" role="menuitem">[DAY]</button>
-		<button class="button" role="menuitem">[DAY]</button>
-		<button class="button" role="menuitem">[DAY]</button>
-		<button class="button" role="menuitem">[DAY]</button>
-		<button class="button" role="menuitem">[DAY]</button>
-		<button class="button" role="menuitem">[DAY]</button>
-	</div>
+	</main>
+	<ul class="details-container">
+		<li><h3 class="bold details__text">pressure <span class="details__pressure details__value"></span></h3></li>
+		<li><h3 class="bold details__text">humidity <span class="details__humidity details__value"></span></h3></li>
+		<li><h3 class="bold details__text">wind speed <span class="details__wind-speed details__value"></span></h3></li>
+		<li><h3 class="bold details__text">wind degrees <span class="details__wind-deg details__value"></span></h3></li>
+		<li><h3 class="bold details__text">clouds <span class="details__clouds details__value"></span></h3></li>
+	</ul>
+	<ul class="menu-container" role="menu" aria-label="Tabs for each day" aria-controls="menu">
+		<li><button class="button selected-day" role="menuitem" aria-label="Today">TDA</button></li>
+		<li><button class="button" role="menuitem">[DAY]</button></li>
+		<li><button class="button" role="menuitem">[DAY]</button></li>
+		<li><button class="button" role="menuitem">[DAY]</button></li>
+		<li><button class="button" role="menuitem">[DAY]</button></li>
+		<li><button class="button" role="menuitem">[DAY]</button></li>
+		<li><button class="button" role="menuitem">[DAY]</button></li>
+		<li><button class="button" role="menuitem">[DAY]</button></li>
+	</ul>
 	<div class="chart-container">
-		<canvas id="myChart"></canvas>
+		<canvas role="img" aria-label="A line chart showing max temperature for the next 7 days" id="myChart"></canvas>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  </aticle>

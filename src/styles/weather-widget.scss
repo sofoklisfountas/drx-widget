@@ -19,6 +19,10 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 			font-family: 'Inter', sans-serif;
 		}
 
+		ul {
+			list-style-type: none;
+		}
+
 		display: grid;
 		grid-template-columns: 2fr 3fr;
 		grid-template-areas:
