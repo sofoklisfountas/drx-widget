@@ -1,0 +1,241 @@
+// Colors
+// text
+$text-dark: hsl(207, 21%, 25%);
+$text-grey: hsl(0, 0%, 44%);
+$text-lightGrey: hsl(0, 0%, 60%);
+
+// background
+$primary: hsl(205, 86%, 61%);
+$secondary: #EC6E4C;
+$bg-lightGrey: hsl(240, 11%, 98%);
+
+	.widget {
+		* {
+			margin: 0;
+			padding: 0;
+			color: $text-dark;
+			overflow-x: hidden;
+			box-sizing: border-box;
+			font-family: 'Inter', sans-serif;
+		}
+
+		display: grid;
+		grid-template-columns: 2fr 3fr;
+		grid-template-areas:
+		"main days days"
+		"main chart chart"
+		"details chart chart"
+		"details chart chart";
+		gap:2rem 2rem;
+		max-width: 1024px;
+		padding: 1rem;
+		// overflow: hidden;
+
+		background-color: white;
+		border: 2px solid $text-grey;
+		border-radius: 16px;
+
+		.header-info-container {
+			grid-area: main;
+			.header__city {
+				align-items: center;
+				gap: 1rem;
+
+				font-size: clamp(16px, 4vw, 24px);
+				font-weight: 600;
+			}
+
+			.header-temp-container {
+				display: flex;
+				flex-flow: wrap-reverse;
+
+				.header__temp {
+					display: inline;
+
+					font-size: clamp(42px, 10vw, 64px);
+					font-weight: 500;
+				}
+
+				.header__icon {
+					display: inline;
+					align-self: center;
+					max-width: 100%;
+  					height: auto;
+					margin-left: 0.5rem;
+
+					background-color: rgba(70, 170, 241, 0.486);
+					border-radius: 16px;
+				}
+			}
+
+			.header__date {
+				// margin-bottom: 1rem;
+
+				font-size: clamp(12px, 3vw, 16px);
+				font-weight: 400;
+				color: $text-grey;
+			}
+
+			.header__feels {
+				font-size: clamp(12px, 3vw, 16px);
+				color: $text-grey;
+			}
+		}
+
+		.details-container {
+			grid-area: details;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+			align-items: center;
+			gap: 1rem;
+			height: fit-content;
+			padding: 1rem;
+
+			text-align: center;
+			background-color: $bg-lightGrey;
+			border-radius: 8px;
+
+			.details__text {
+				display: flex;
+				flex-flow: column;
+
+				font-size: 12px;
+				font-weight: 600;
+				text-transform: capitalize;
+				text-align: left;
+				white-space: nowrap;
+				color: $text-lightGrey;
+				// prevents text overflow on smaller width of the widget
+				overflow: revert-layer;
+
+				.details__value {
+					padding-top: 0.25rem;
+
+					font-size: 16px;
+					text-transform: lowercase;
+					font-weight: 500;
+					color: $text-grey;
+				}
+			}
+		}
+
+		.menu-container {
+			grid-area: days;
+			display: grid;
+			grid-template-rows: 1fr;
+			grid-template-columns: repeat(8, 1fr);
+			justify-content: space-between;
+			gap: 0.5rem;
+			padding: 0.5rem;
+
+			.button {
+				font-family: 'Inter', sans-serif;
+				height: 40px;
+				width: 100%;
+				min-width: 40px;
+				padding: 0.5rem;
+
+				font-weight: 600;
+				letter-spacing: 1.1px;
+				color: white;
+				background-color: $primary;
+				border: none;
+				border-radius: 8px;
+				box-shadow: 3px 3px 0px rgb(90, 143, 192), inset -1px -1px 3px rgba(125, 186, 243, 0.72);
+				transition: all 100ms ease-in-out;
+
+				&:hover {
+					opacity: 0.8;
+					cursor: pointer;
+				}
+
+				&:active {
+					box-shadow: 0px 0px 0px rgb(180, 118, 57);
+					transition: all 20ms ease-in-out;
+					transform: scale(1);
+				}
+			}
+			.selected-day {
+				background-color: $secondary;
+				box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+				transform: translate( 2px, 3px);
+			}
+		}
+
+		.chart-container {
+			grid-area: chart;
+			align-self: center;
+			height: 100%;
+			max-height: 270px;
+			// padding-block: 1rem;
+		}
+	}
+
+
+	@media screen and (max-width: 800px) {
+			.widget {
+				grid-template-areas:
+				"main details details"
+				"days days days"
+				"chart chart chart";
+				gap: 1rem;
+				.header-info-container {
+					place-self: center;
+
+					.header__temp {
+						font-size: clamp(40px, 1%, 52px);
+					}
+				}
+
+				.details-container {
+					height: auto;
+					.details__text {
+						font-size: 12px;
+						letter-spacing: 0.3;
+
+						.details__value {
+							font-size: 14px;
+							font-weight: 600;
+						}
+					}
+				}
+
+				.menu-container {
+					.button {
+						padding: 0.25rem;
+						font-size: 12px;
+					}
+				}
+
+				.chart-container {
+					height: 250px;
+				}
+			}
+	}
+
+	@media screen and (max-width: 460px) {
+
+			.widget {
+				display: flex;
+				flex-flow: column;
+
+				.details-container {
+					gap: 0.5rem;
+				}
+
+				.menu-container {
+					display: grid;
+					grid-template-rows: 1fr 1fr;
+					grid-template-columns: repeat(4, 1fr);
+				}
+
+				.chart-container {
+					height: 200px;
+					width: 100%;
+				}
+			}
+
+	}
+
+
+
