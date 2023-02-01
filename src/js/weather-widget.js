@@ -46,21 +46,12 @@ export default class WeatherWidgetDrx extends HTMLElement {
 
 	constructor() {
 		super();
-		// const todayButton = this.shadowRoot.querySelector('button:first-child');
-
-		this.attachShadow({mode: 'open'});
-		// how to use scss with a web compoent
-		// https://github.com/parcel-bundler/parcel/discussions/5847
 		const style = document.createElement('style');
+		this.attachShadow({mode: 'open'});
 		this.shadowRoot.appendChild(style);
 		style.textContent = weatherWisgettStyles;
-
-		// Using 'cloneNode(true)' enable to re-use the component multiple times in page.
-		// https://stackoverflow.com/q/69054340/7889584
 		this.shadowRoot.appendChild(weatherWidgetTemplate.content.cloneNode(true));
 		this.dayButtons = this.shadowRoot.querySelectorAll('.button');
-
-
 	}
 
 	// ..:: Utility functions ::..
@@ -103,22 +94,16 @@ export default class WeatherWidgetDrx extends HTMLElement {
 	 */
 	async requestData(requestURL) {
 		let json;
-		console.log("REQUEST URL", requestURL);
 		try {
 			const response = await fetch(requestURL, {method: 'GET'});
 			if (!response.ok) {
 				throw new Error('Response not ok. Status: ', response.statusText);
 			}
-			console.log('Response:', response);
+
 			json =  await response.json();
-			console.log(json);
-
-
 		} catch(e) {
-			console.error('Unable to request data: ',e)
 			throw new Error(e);
 		}
-		console.log('JSON: ', json);
 		return json;
 	}
 
@@ -239,7 +224,7 @@ export default class WeatherWidgetDrx extends HTMLElement {
 				y: {
 					ticks: {
 						// Include a degree sign in the ticks
-						callback: function(value, index, ticks) {
+						callback: function(value) {
 							return  `${value}°`;
 						}
 					}
@@ -249,7 +234,6 @@ export default class WeatherWidgetDrx extends HTMLElement {
 		});
 		return chart;
 	}
-
 
 
 	/**
@@ -268,7 +252,6 @@ export default class WeatherWidgetDrx extends HTMLElement {
 
 		// 4. Get Daily Data
 		const filteredDailytData = this.getFilteredDailyData(responseData.daily);
-		console.log(filteredDailytData);
 
 		// 5. Get the labels and data to fill the chart and draw it.
 		const chartLabels = filteredDailytData.map(d => this.getNameOfDay(d.dt));
@@ -312,26 +295,3 @@ export default class WeatherWidgetDrx extends HTMLElement {
 }
 
 customElements.define('drx-weather-widget', WeatherWidgetDrx);
-
-
-
-
-
-
-
-
-
-
-
-
-// /**
-//  * Fetch data on page load at a certain rate set by the interval
-//  */
-// window.addEventListener('load', function () {
-// 	// var fetchInterval = 10000; // 10 seconds.
-
-// 	// Update data every ${fetchInterval} seconds.
-// 	// setInterval(updateWidget, fetchInterval);
-// 	updateWidget();
-// });
-

@@ -5,16 +5,16 @@ $text-grey: hsl(0, 0%, 44%);
 $text-lightGrey: hsl(0, 0%, 60%);
 
 // background
-$primary: hsl(205, 86%, 61%);
-$secondary: #EC6E4C;
+$primary: hsl(204, 82%, 57%);
+$secondary: hsl(13, 81%, 61%);
 $bg-lightGrey: hsl(240, 11%, 98%);
 
 	.widget {
+		// Simple reset & global styles
 		* {
 			margin: 0;
 			padding: 0;
 			color: $text-dark;
-			overflow-x: hidden;
 			box-sizing: border-box;
 			font-family: 'Inter', sans-serif;
 		}
@@ -28,11 +28,11 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 		"details chart chart";
 		gap:2rem 2rem;
 		max-width: 1024px;
-		padding: 1rem;
-		// overflow: hidden;
+		padding: 2.5rem;
+		margin: 0 auto;
 
+		border: 1px solid #e1e1e1;
 		background-color: white;
-		border: 2px solid $text-grey;
 		border-radius: 16px;
 
 		.header-info-container {
@@ -40,6 +40,7 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 			.header__city {
 				align-items: center;
 				gap: 1rem;
+				margin-bottom: 0.25rem;
 
 				font-size: clamp(16px, 4vw, 24px);
 				font-weight: 600;
@@ -61,24 +62,21 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 					align-self: center;
 					max-width: 100%;
   					height: auto;
-					margin-left: 0.5rem;
 
-					background-color: rgba(70, 170, 241, 0.486);
 					border-radius: 16px;
 				}
 			}
 
 			.header__date {
-				// margin-bottom: 1rem;
-
+				padding-bottom: 1rem;
 				font-size: clamp(12px, 3vw, 16px);
 				font-weight: 400;
-				color: $text-grey;
+				color: #737373;
 			}
 
 			.header__feels {
 				font-size: clamp(12px, 3vw, 16px);
-				color: $text-grey;
+				color: #737373;
 			}
 		}
 
@@ -126,7 +124,6 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 			grid-template-columns: repeat(8, 1fr);
 			justify-content: space-between;
 			gap: 0.5rem;
-			padding: 0.5rem;
 
 			.button {
 				font-family: 'Inter', sans-serif;
@@ -136,12 +133,11 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 				padding: 0.5rem;
 
 				font-weight: 600;
-				letter-spacing: 1.1px;
-				color: white;
-				background-color: $primary;
+				letter-spacing: 1.1;
+				color: #1d6fa6;
+				background-color: #d8eefe;
 				border: none;
 				border-radius: 8px;
-				box-shadow: 3px 3px 0px rgb(90, 143, 192), inset -1px -1px 3px rgba(125, 186, 243, 0.72);
 				transition: all 100ms ease-in-out;
 
 				&:hover {
@@ -150,15 +146,12 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 				}
 
 				&:active {
-					box-shadow: 0px 0px 0px rgb(180, 118, 57);
 					transition: all 20ms ease-in-out;
-					transform: scale(1);
 				}
 			}
 			.selected-day {
-				background-color: $secondary;
-				box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
-				transform: translate( 2px, 3px);
+				background-color: $primary;
+				color: white;
 			}
 		}
 
@@ -167,7 +160,6 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 			align-self: center;
 			height: 100%;
 			max-height: 270px;
-			// padding-block: 1rem;
 		}
 	}
 
@@ -180,7 +172,7 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 				"chart chart chart";
 				gap: 1rem;
 				.header-info-container {
-					place-self: center;
+					place-self: left;
 
 					.header__temp {
 						font-size: clamp(40px, 1%, 52px);
@@ -195,12 +187,13 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 
 						.details__value {
 							font-size: 14px;
-							font-weight: 600;
+							font-weight: 500;
 						}
 					}
 				}
 
 				.menu-container {
+					padding-block: 1rem;
 					.button {
 						padding: 0.25rem;
 						font-size: 12px;
@@ -218,6 +211,22 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 			.widget {
 				display: flex;
 				flex-flow: column;
+				padding: 1.5rem;
+				gap: 1.5rem;
+				text-align: center;
+
+				.header-info-container {
+					align-self: center;
+
+					.header__city {
+						font-size: 24px;
+					}
+
+					.header-temp-container {
+						flex-flow: column-reverse;
+						align-items: center;
+					}
+				}
 
 				.details-container {
 					gap: 0.5rem;
@@ -227,6 +236,7 @@ $bg-lightGrey: hsl(240, 11%, 98%);
 					display: grid;
 					grid-template-rows: 1fr 1fr;
 					grid-template-columns: repeat(4, 1fr);
+					padding-block: 0;
 				}
 
 				.chart-container {
